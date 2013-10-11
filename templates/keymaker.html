@@ -1,0 +1,46 @@
+<html>
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+
+    <form name='form' action="{{url_for('keytake')}}" method="post">
+	{% for a in range(1, i+1) %}
+		{{a}}:<br>
+        {%set y=a~'' %}
+        {%set t=''~'a'%}
+        {%set e=''~'b'%}
+        {%set w=''~'c'%}
+        {%set q=''~'d'%}
+        {%set z=''~'e'%}
+        <input type = "radio"
+               name = {{y}}
+               id = {{t}}
+               value = {{t}} />
+        <label for = {{t}}>A</label>
+        <input type = "radio"
+               name = {{y}}
+               id = {{e}}
+               value = {{e}} />
+        <label for = {{e}}>B</label>
+        <input type = "radio"
+               name = {{y}}
+               id = {{w}}
+               value = {{w}} />
+        <label for = {{w}}>C</label>
+        <input type = "radio"
+               name = {{y}}
+               id = {{q}}
+               value = {{q}} />
+        <label for = {{q}}>D</label>
+        <input type = "radio"
+               name = {{y}}
+               id = {{z}}
+               value = {{z}} />
+        <label for = {{z}}>E</label>
+        <br>
+	{% endfor %}
+    <input type="submit" value="Submit form">
+    </form>
+</body>
+</html>
