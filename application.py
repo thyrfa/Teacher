@@ -1,6 +1,4 @@
 from flask import Flask, request, render_template, url_for, redirect
-from flask.ext.wtf import Form
-from wtforms import TextField, PasswordField, validators
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, flash, current_user
 application = Flask(__name__)
 login_manager = LoginManager()
