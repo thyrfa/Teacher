@@ -3,7 +3,6 @@ from flask.ext.wtf import Form
 from wtforms import TextField, PasswordField, validators
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, flash, current_user
 application = Flask(__name__)
-app = application
 login_manager = LoginManager()
 
 studentgrades={}
@@ -54,14 +53,14 @@ def load_user(id):
     return USERS.get(int(id))
 
 
-@app.route('/')
+@application.route('/')
 def main():
     global test
     if test is None:
         return 'No Test Loaded'
     return render_template('testtake.html', i=test.length())
     
-@app.route("/teacher", methods=["GET", "POST"])
+@application.route("/teacher", methods=["GET", "POST"])
 def logins():
     if current_user.is_active()==True:
         return render_template("teachon.html")
@@ -74,19 +73,19 @@ def logins():
                 flash('Sorry, couldn\'nt login')
     return render_template("login.html")
 
-@app.route('/teststart')
+@application.route('/teststart')
 @login_required
 def testcount():
     return render_template('teacherlog.html')
 
-@app.route("/logout")
+@application.route("/logout")
 @login_required
 def logout():
     logout_user()
     flash("Logged out.")
     return redirect(url_for("index"))
 
-@app.route('/submit/', methods=['GET', 'POST'])
+@application.route('/submit/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         studentgrades[request.form.get('name')]=test.grade(request)
@@ -94,7 +93,7 @@ def login():
     else:
         return 'GET on login not supported'
         
-@app.route('/keytaker/', methods=['POST'])
+@application.route('/keytaker/', methods=['POST'])
 @login_required
 def keytake():
     key={}
@@ -107,14 +106,14 @@ def keytake():
     return render_template('teachon.html')
     
 
-@app.route('/keymaker/', methods=['GET', 'POST'])
+@application.route('/keymaker/', methods=['GET', 'POST'])
 @login_required
 def teachlog():
     if request.method == 'POST':
         x= int(request.form.get('number'))
         return render_template("keymaker.html", i=x)
     
-@app.route('/grades/')
+@application.route('/grades/')
 @login_required
 def viewgrades():
     global studentgrades
@@ -126,7 +125,7 @@ def viewgrades():
     return render_template("gradeview.html", grades=sgrades, z=len(sgrades), x=q)
         
 if __name__ == "__main__":
-    app.secret_key = '\xba\x99K~:\x14mV\x98\x1e@\x8c\x9e\x04\xd4\x90\x13\xc4*\xd3\xe7xa\xc7'
-    login_manager.init_app(app)
-    app.run()
+    application.secret_key = '\xba\x99K~:\x14mV\x98\x1e@\x8c\x9e\x04\xd4\x90\x13\xc4*\xd3\xe7xa\xc7'
+    login_manager.init_app(application)
+    application.run()
     
