@@ -1,6 +1,8 @@
 from flask import Flask, request, render_template, url_for, redirect
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, flash, current_user
 application = Flask(__name__)
+application.debug=True
+
 login_manager = LoginManager()
 
 studentgrades={}
@@ -125,6 +127,5 @@ def viewgrades():
 if __name__ == "__main__":
     application.secret_key = '\xba\x99K~:\x14mV\x98\x1e@\x8c\x9e\x04\xd4\x90\x13\xc4*\xd3\xe7xa\xc7'
     login_manager.init_app(application)
-    application.debug=True
     application.run()
     
