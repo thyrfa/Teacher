@@ -52,7 +52,9 @@ USER_NAMES = dict((u.name, u) for u in USERS.itervalues())
 def load_user(id):
     return USERS.get(int(id))
 
-
+@application.route('/maybe')
+def mayb():
+    return 'huh'
 @application.route('/')
 def main():
     global test
