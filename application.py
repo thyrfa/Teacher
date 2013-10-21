@@ -88,7 +88,7 @@ def testcount():
 def logout():
     logout_user()
     flash("Logged out.")
-    return redirect(url_for("index"))
+    return redirect(url_for("logins"))
 
 @application.route('/submit/', methods=['GET', 'POST'])
 def login():
@@ -129,11 +129,6 @@ def viewgrades():
     q=sgrades.iterkeys()
     return render_template("gradeview.html", grades=sgrades, z=len(sgrades), x=q)
     
-@app.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    return render_template("teachon.html")
     
 if __name__ == "__main__":
     login_manager.init_app(application)
