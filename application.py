@@ -4,6 +4,8 @@ application = Flask(__name__)
 application.debug=True
 
 login_manager = LoginManager()
+login_manager.init_app(application)
+login_manager.login_view = 'teacher'
 
 studentgrades={}
 test=None
