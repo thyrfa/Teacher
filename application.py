@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, url_for, redirect
 from flask.ext.login import LoginManager, UserMixin, login_required, login_user, flash, current_user
 application = Flask(__name__)
 application.debug=True
+application.secret_key = '\xba\x99K~:\x14mV\x98\x1e@\x8c\x9e\x04\xd4\x90\x13\xc4*\xd3\xe7xa\xc7'
 
 login_manager = LoginManager()
 login_manager.init_app(application)
@@ -129,7 +130,6 @@ def viewgrades():
     return render_template("gradeview.html", grades=sgrades, z=len(sgrades), x=q)
         
 if __name__ == "__main__":
-    application.secret_key = '\xba\x99K~:\x14mV\x98\x1e@\x8c\x9e\x04\xd4\x90\x13\xc4*\xd3\xe7xa\xc7'
     login_manager.init_app(application)
     application.run()
     
