@@ -128,7 +128,13 @@ def viewgrades():
         sgrades[unicode(i)]=unicode(studentgrades[i])
     q=sgrades.iterkeys()
     return render_template("gradeview.html", grades=sgrades, z=len(sgrades), x=q)
-        
+    
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return render_template("teachon.html")
+    
 if __name__ == "__main__":
     login_manager.init_app(application)
     application.run()
