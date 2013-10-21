@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, url_for, redirect
-from flask.ext.login import LoginManager, UserMixin, login_required, login_user, flash, current_user
+from flask.ext.login import LoginManager, UserMixin, login_required, login_user, flash, current_user, logout_user
 application = Flask(__name__)
 application.debug=True
 application.secret_key = '\xba\x99K~:\x14mV\x98\x1e@\x8c\x9e\x04\xd4\x90\x13\xc4*\xd3\xe7xa\xc7'
@@ -107,6 +107,8 @@ def keytake():
     z=len(request.form)
     global test
     test=Test(z, key)
+    global studentgrades
+    studentgrades={}
     flash('Submitted')
     return render_template('teachon.html')
     
