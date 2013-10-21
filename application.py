@@ -65,7 +65,7 @@ def main():
         return 'No Test Loaded'
     return render_template('testtake.html', i=test.length())
     
-@application.route("/teacher")
+@application.route("/teacher", methods=['GET', 'POST'])
 def logins():
     if current_user.is_active()==True:
         return render_template("teachon.html")
