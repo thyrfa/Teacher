@@ -97,7 +97,10 @@ def faq():
 @application.route('/submit/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        studentgrades[request.form.get('name')]=test.grade(request)
+        if studentgrades.get(request.form.get('name'))==None:
+            studentgrades[request.form.get('name')]=test.grade(request)
+        else:
+            return 'This student has already submitted'
         return 'Test submitted'
     else:
         return 'GET on login not supported'
