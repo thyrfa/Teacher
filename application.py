@@ -89,6 +89,10 @@ def logout():
     logout_user()
     flash("Logged out.")
     return redirect(url_for("logins"))
+    
+@application.route('/faq')
+def faq():
+    return render_template('faq.html')
 
 @application.route('/submit/', methods=['GET', 'POST'])
 def login():
