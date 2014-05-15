@@ -118,14 +118,15 @@ def keytake():
     studentgrades={}
     flash('Submitted')
     return render_template('teachon.html')
-    
+        
 
-@application.route('/keymaker/', methods=['GET', 'POST'])
+@application.route('/keymaker/', methods=['POST'])
 @login_required
 def teachlog():
     if request.method == 'POST':
         x= int(request.form.get('number'))
-        return render_template("keymaker.html", i=x)
+        y= int(request.form.get('frq'))
+        return render_template("keymaker.html", i=x, n=y)
     
 @application.route('/grades/')
 @login_required

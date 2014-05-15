@@ -1,18 +1,20 @@
 <html>
 <head>
-    <title>My Webpage</title>
+    <title>Make a Test</title>
 </head>
 <body>
 
     <form name='form' action="{{url_for('keytake')}}" method="post">
 	{% for a in range(1, i+1) %}
 		{{a}}:<br>
+        <textarea id='ta2' form='form'></textarea><br>
         {%set y=a~'' %}
         {%set t=''~'a'%}
         {%set e=''~'b'%}
         {%set w=''~'c'%}
         {%set q=''~'d'%}
         {%set z=''~'e'%}
+        <input type = 
         <input type = "radio"
                name = {{y}}
                id = {{t}}
@@ -40,7 +42,21 @@
         <label for = {{z}}>E</label>
         <br>
 	{% endfor %}
+    {%set p=0%}
+    {% for a in range(1, n+1) %}
+        {%set p=p+1%}
+        {{p}}:
     <input type="submit" value="Submit form">
     </form>
+    <script type=text/javascript src="{{
+        url_for('static', filename='jquery.js') }}"></script>
+    <script type="text/javascript" src="{{
+        url_for('static', filename='jqueryautosize.js')}}"></script>
+    <script>
+        if ($ && $.fn.autosize) {
+            $('#ta1').autosize();
+            $('#ta2').autosize({append: "\n"});
+        }
+    </script>
 </body>
 </html>
